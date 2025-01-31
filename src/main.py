@@ -27,6 +27,13 @@ def main():
 
             if os.path.isfile(audio_file):
                 st.success(f"Conversion successful! Audiobook saved as: {audio_file}")
+                with open(audio_file, "rb") as f:
+                    st.download_button(
+                        label="Download Audiobook",
+                        data=f,
+                        file_name=os.path.basename(audio_file),
+                        mime="audio/mpeg"
+                    )
             else:
                 st.error("An error occurred during the conversion process.")
         else:
